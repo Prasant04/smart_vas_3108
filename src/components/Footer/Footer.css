@@ -1,6 +1,6 @@
 .footer {
-  background: var(--primary);
-  color: white;
+  background: #0f2027; /* Dark mode background */
+  color: #e0e0e0; /* Softer light gray text for readability */
   padding: 2rem;
   margin-top: 3rem;
 }
@@ -16,6 +16,7 @@
 .footer-section h3 {
   margin-bottom: 1rem;
   font-size: 1.2rem;
+  color: #ffffff; /* White headings */
 }
 
 .footer-section ul {
@@ -27,13 +28,13 @@
 }
 
 .footer-section a {
-  color: #ddd;
+  color: #a8dadc; /* Muted aqua blue links */
   text-decoration: none;
   transition: var(--transition);
 }
 
 .footer-section a:hover {
-  color: white;
+  color: #00a8ff; /* Accent blue on hover */
 }
 
 .footer-bottom {
@@ -41,6 +42,8 @@
   padding-top: 2rem;
   margin-top: 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.9rem;
+  color: #aaa; /* Muted footer text */
 }
 
 @media (max-width: 768px) {

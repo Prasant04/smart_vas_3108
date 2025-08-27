@@ -24,15 +24,15 @@ const Footer = () => {
         <div className="footer-section">
           <h3>Contact Us</h3>
           <ul>
-            <li><i className="fas fa-phone"></i> +91 9876543210</li>
+            <li><i className="fas fa-phone"></i> +91 9988774455</li>
             <li><i className="fas fa-envelope"></i> support@smartvas.com</li>
-            <li><i className="fas fa-map-marker-alt"></i> Mumbai, India</li>
+            <li><i className="fas fa-map-marker-alt"></i> Hyderabad, India</li>
           </ul>
         </div>
       </div>
 
       <div className="footer-bottom">
-        <p>&copy; 2023 SmartVAS. All rights reserved.</p>
+        <p>&copy; 2025 SmartVAS. All rights reserved.</p>
       </div>
     </footer>
   );

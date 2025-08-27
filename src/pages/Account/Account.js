@@ -5,8 +5,8 @@ const Account = () => {
   const [activeTab, setActiveTab] = useState('profile');
 
   const userData = {
-    name: 'Rajesh Kumar',
-    email: 'rajesh.kumar@example.com',
+    name: 'Peter',
+    email: 'peter@example.com',
     phone: '+91 9876543210',
     plan: 'Premium',
     validity: '30 Days',

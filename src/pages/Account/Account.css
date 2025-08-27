@@ -1,12 +1,18 @@
 .account-page {
   flex: 1;
+  min-height: 100vh;
+  padding: 2rem;
+  background: #0f2027; /* 🌑 Solid dark background */
+  color: #e0e0e0;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
+/* Tabs */
 .account-tabs {
   display: flex;
   justify-content: center;
   margin-bottom: 2rem;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .tab-btn {
@@ -15,40 +21,52 @@
   padding: 1rem 2rem;
   font-size: 1rem;
   font-weight: 500;
-  color: #666;
+  color: #bbb;
   cursor: pointer;
   transition: var(--transition);
   border-bottom: 3px solid transparent;
 }
 
 .tab-btn.active {
-  color: var(--secondary);
-  border-bottom: 3px solid var(--secondary);
+  color: var(--accent);
+  border-bottom: 3px solid var(--accent);
+  text-shadow: 0 0 8px rgba(0, 198, 255, 0.6);
 }
 
 .tab-btn:hover {
-  color: var(--secondary);
+  color: var(--accent);
 }
 
+/* Content Area */
 .tab-content {
   max-width: 800px;
   margin: 0 auto;
 }
 
+/* Card */
 .info-card {
-  background: white;
-  border-radius: 10px;
+  background: #1c2833; /* Dark card */
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
   padding: 2rem;
-  box-shadow: var(--shadow);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 198, 255, 0.4);
 }
 
 .info-card h2 {
-  color: var(--primary);
+  color: var(--accent);
   margin-bottom: 1.5rem;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid #f1f1f1;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.08);
 }
 
+/* Info Items */
 .info-item {
   margin-bottom: 1rem;
 }
@@ -56,30 +74,36 @@
 .info-item label {
   display: block;
   font-weight: 500;
-  color: #666;
+  color: #aaa;
   margin-bottom: 0.3rem;
 }
 
 .info-item p {
   font-size: 1.1rem;
+  color: #e4e6eb;
 }
 
+/* Buttons */
 .edit-btn, .upgrade-btn {
-  background: var(--gradient);
+  background: var(--secondary); /* ✅ Solid accent color */
   color: white;
   border: none;
   padding: 0.8rem 1.5rem;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
   font-weight: 500;
   margin-top: 1rem;
   transition: var(--transition);
+  box-shadow: 0 4px 15px rgba(0, 114, 255, 0.4);
 }
 
 .edit-btn:hover, .upgrade-btn:hover {
-  opacity: 0.9;
+  opacity: 0.95;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 198, 255, 0.6);
 }
 
+/* Plan */
 .plan-details {
   margin-bottom: 1.5rem;
 }
@@ -87,45 +111,52 @@
 .plan-name {
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--primary);
+  color: var(--accent);
   margin-bottom: 0.5rem;
 }
 
 .plan-validity, .plan-devices {
   margin-bottom: 0.5rem;
-  color: #666;
+  color: #bbb;
 }
 
+/* Billing */
 .billing-table {
   width: 100%;
   border-collapse: collapse;
+  color: #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .billing-table th, .billing-table td {
   padding: 1rem;
   text-align: left;
-  border-bottom: 1px solid #f1f1f1;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .billing-table th {
   font-weight: 600;
-  color: var(--primary);
+  color: var(--accent);
 }
 
 .download-btn {
-  background: var(--accent);
+  background: var(--secondary);
   color: white;
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.9rem;
+  transition: var(--transition);
 }
 
 .download-btn:hover {
-  opacity: 0.9;
+  opacity: 0.95;
+  box-shadow: 0 0 12px rgba(0, 198, 255, 0.5);
 }
 
+/* Responsive */
 @media (max-width: 768px) {
   .account-tabs {
     flex-direction: column;
@@ -135,12 +166,11 @@
   .tab-btn {
     width: 100%;
     text-align: center;
-    border-bottom: 1px solid #ddd;
-    border-radius: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .tab-btn.active {
-    border-bottom: 3px solid var(--secondary);
+    border-bottom: 3px solid var(--accent);
   }
 
   .billing-table {

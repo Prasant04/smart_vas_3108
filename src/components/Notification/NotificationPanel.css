@@ -1,76 +1,79 @@
 .notification-panel {
-  position: fixed;
-  top: 70px;
-  right: 20px;
-  width: 350px;
-  background: white;
-  border-radius: 10px;
-  box-shadow: var(--shadow);
-  z-index: 1000;
-  transform: translateY(-20px);
-  opacity: 0;
-  visibility: hidden;
-  transition: var(--transition);
-}
-
-.notification-panel.active {
-  transform: translateY(0);
-  opacity: 1;
-  visibility: visible;
-}
-
-.notification-header {
-  padding: 1rem;
-  border-bottom: 1px solid #eee;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.notification-header h3 {
-  color: var(--primary);
-}
-
-.notification-list {
-  max-height: 300px;
-  overflow-y: auto;
-}
-
-.notification-item {
-  padding: 1rem;
-  border-bottom: 1px solid #f1f1f1;
-  display: flex;
-  gap: 10px;
-}
-
-.notification-item:hover {
-  background: #f9f9f9;
+  position: relative;
+  display: inline-block;
 }
 
 .notification-icon {
-  color: var(--accent);
-  font-size: 1.2rem;
+  position: relative;
+  cursor: pointer;
+  color: white;
 }
 
-.notification-content h4 {
-  font-size: 0.9rem;
-  margin-bottom: 0.3rem;
+.notification-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 2px 6px;
 }
 
-.notification-content p {
-  font-size: 0.8rem;
-  color: #666;
+.notification-dropdown {
+  position: absolute;
+  right: 0;
+  margin-top: 10px;
+  width: 250px;
+  background: #1e2a32;
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 100;
 }
 
-.notification-time {
-  font-size: 0.7rem;
-  color: #999;
-  margin-top: 0.3rem;
+.notification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  font-weight: bold;
+  border-bottom: 1px solid #333;
 }
 
-@media (max-width: 768px) {
-  .notification-panel {
-    width: 300px;
-    right: 10px;
-  }
+.notification-header button {
+  background: none;
+  border: none;
+  color: #00c8c8;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.notification-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.notification-list li {
+  padding: 10px;
+  border-bottom: 1px solid #333;
+}
+
+.notification-list li.unread {
+  font-weight: bold;
+  background: #2c3e50;
+}
+
+.notification-list li.read {
+  color: #aaa;
+}
+
+.notification-list li.empty {
+  text-align: center;
+  color: #aaa;
+  padding: 20px;
 }

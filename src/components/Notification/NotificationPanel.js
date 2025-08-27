@@ -1,56 +1,68 @@
-import React from 'react';
-import './NotificationPanel.css';
+import React, { useState, useRef, useEffect } from "react";
+import { Bell } from "lucide-react";
+import "./NotificationPanel.css";
 
-const NotificationPanel = ({ isOpen }) => {
-  const notifications = [
-    {
-      id: 1,
-      type: 'info',
-      title: 'New Service Available',
-      message: 'Weather forecasting service has been upgraded with new features.',
-      time: '10 minutes ago'
-    },
-    {
-      id: 2,
-      type: 'warning',
-      title: 'System Maintenance',
-      message: 'Scheduled maintenance on June 15th, 2023 from 2:00 AM to 4:00 AM.',
-      time: '2 hours ago'
-    },
-    {
-      id: 3,
-      type: 'offer',
-      title: 'Special Offer',
-      message: 'Get 50% off on movie streaming services this weekend.',
-      time: '1 day ago'
-    }
-  ];
+const NotificationPanel = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [notifications, setNotifications] = useState([
+    { id: 1, text: "New user registered", read: false },
+    { id: 2, text: "Server restarted", read: false },
+    { id: 3, text: "Payment received", read: false },
+  ]);
+  const panelRef = useRef(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (panelRef.current && !panelRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const toggleDropdown = () => setIsOpen(!isOpen);
+
+  const markAllAsRead = () => {
+    setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
+  };
+
+  const unreadCount = notifications.filter((n) => !n.read).length;
 
   return (
-    <div className={`notification-panel ${isOpen ? 'active' : ''}`}>
-      <div className="notification-header">
-        <h3>Notifications</h3>
-        <button className="icon-btn">
-          <i className="fas fa-times"></i>
-        </button>
+    <div className="notification-panel" ref={panelRef}>
+      {/* 🔔 Bell Icon with Badge */}
+      <div className="notification-icon" onClick={toggleDropdown}>
+        <Bell size={24} />
+        {unreadCount > 0 && (
+          <span className="notification-badge">{unreadCount}</span>
+        )}
       </div>
-      <div className="notification-list">
-        {notifications.map(notification => (
-          <div key={notification.id} className="notification-item">
-            <div className="notification-icon">
-              <i className={`fas fa-${
-                notification.type === 'info' ? 'info-circle' :
-                notification.type === 'warning' ? 'exclamation-triangle' : 'gift'
-              }`}></i>
-            </div>
-            <div className="notification-content">
-              <h4>{notification.title}</h4>
-              <p>{notification.message}</p>
-              <div className="notification-time">{notification.time}</div>
-            </div>
+
+      {/* Dropdown */}
+      {isOpen && (
+        <div className="notification-dropdown">
+          <div className="notification-header">
+            <span>Notifications</span>
+            <button onClick={markAllAsRead}>Mark all as read</button>
           </div>
-        ))}
-      </div>
+          <ul className="notification-list">
+            {notifications.length > 0 ? (
+              notifications.map((n) => (
+                <li
+                  key={n.id}
+                  className={n.read ? "read" : "unread"}
+                >
+                  {n.text}
+                </li>
+              ))
+            ) : (
+              <li className="empty">No notifications</li>
+            )}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };

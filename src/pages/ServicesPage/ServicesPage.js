@@ -1,4 +1,11 @@
 import React, { useState } from 'react';
+import {
+  Film,             // Movies 🎬
+  Trophy,           // Sports 🏏
+  Newspaper,        // News 📰
+  Cloud,            // Weather ☁️
+  Gamepad2          // Games 🎮
+} from 'lucide-react';
 import './ServicesPage.css';
 
 const ServicesPage = () => {
@@ -6,65 +13,63 @@ const ServicesPage = () => {
 
   const categories = [
     { id: 'all', name: 'All Services' },
-    { id: 'cloud', name: 'Cloud Services' },
-    { id: 'api', name: 'API Integration' },
-    { id: 'support', name: 'Customer Support' }
+    { id: 'movies', name: 'Movies', icon: <Film size={18} /> },
+    { id: 'sports', name: 'Sports', icon: <Trophy size={18} /> },
+    { id: 'news', name: 'News', icon: <Newspaper size={18} /> },
+    { id: 'weather', name: 'Weather', icon: <Cloud size={18} /> },
+    { id: 'games', name: 'Games', icon: <Gamepad2 size={18} /> }
   ];
 
   const services = [
     {
       id: 1,
-      title: 'Enterprise Cloud Storage',
-      description: 'Secure, scalable cloud storage solutions with advanced encryption and compliance features',
-      category: 'cloud',
-      features: ['1TB Storage', 'Advanced Security', '99.9% Uptime', '24/7 Support'],
-      price: '$49.99/month',
-      popular: true
+      title: 'Premium Movies Pack',
+      description: 'Unlimited access to the latest movies, blockbusters, and regional cinema',
+      category: 'movies',
+      features: ['HD & 4K Streaming', 'Multi-language Support', 'New Releases', 'Ad-free Experience'],
+      price: '₹299/month',
+      popular: true,
+      icon: <Film size={28} />
     },
     {
       id: 2,
-      title: 'REST API Integration',
-      description: 'Seamless integration with RESTful APIs for your business applications',
-      category: 'api',
-      features: ['Unlimited Calls', 'Webhooks', 'Documentation', 'SDK Support'],
-      price: '$29.99/month',
-      popular: false
+      title: 'Live Sports Pack',
+      description: 'Catch live cricket, football, and all major sporting events',
+      category: 'sports',
+      features: ['Live Matches', 'Match Highlights', 'Expert Commentary', 'Multi-device Access'],
+      price: '₹249/month',
+      popular: true,
+      icon: <Trophy size={28} />
     },
     {
       id: 3,
-      title: 'Advanced Analytics Suite',
-      description: 'Comprehensive data analytics with visualization and reporting tools',
-      category: 'analytics',
-      features: ['Real-time Dashboards', 'Custom Reports', 'Data Export', 'AI Insights'],
-      price: '$79.99/month',
-      popular: true
+      title: 'Daily News Pack',
+      description: 'Stay updated with breaking news, politics, and world affairs',
+      category: 'news',
+      features: ['24/7 News Channels', 'Breaking Alerts', 'Regional Coverage', 'Live TV'],
+      price: '₹99/month',
+      popular: false,
+      icon: <Newspaper size={28} />
     },
     {
       id: 4,
-      title: 'Premium Support Package',
-      description: 'Dedicated customer support with guaranteed response times',
-      category: 'support',
-      features: ['24/7 Support', '15min Response', 'Dedicated Engineer', 'Phone Support'],
-      price: '$99.99/month',
-      popular: false
+      title: 'Weather Updates Pack',
+      description: 'Accurate daily, weekly, and live weather forecasts',
+      category: 'weather',
+      features: ['Live Forecasts', 'Severe Weather Alerts', 'Air Quality Index', 'Radar Maps'],
+      price: '₹49/month',
+      popular: false,
+      icon: <Cloud size={28} />
     },
     {
       id: 5,
-      title: 'Basic Cloud Storage',
-      description: 'Essential cloud storage for small businesses and individuals',
-      category: 'cloud',
-      features: ['100GB Storage', 'Basic Security', '99% Uptime', 'Email Support'],
-      price: '$9.99/month',
-      popular: false
-    },
-    {
-      id: 6,
-      title: 'Webhook Management',
-      description: 'Manage and monitor webhooks for your integrations',
-      category: 'api',
-      features: ['100 Webhooks', 'Monitoring', 'Retry System', 'Logs'],
-      price: '$19.99/month',
-      popular: false
+      title: 'Premium Games Pack',
+      description: 'Enjoy unlimited access to trending online and mobile games',
+      category: 'games',
+      features: ['Ad-free Gaming', 'Exclusive Titles', 'Multiplayer Access', 'New Games Monthly'],
+      price: '₹199/month',
+      popular: false,
+      icon: <Gamepad2 size={28} />
     }
   ];
 
@@ -76,7 +81,7 @@ const ServicesPage = () => {
     <div className="services-page">
       <div className="services-header">
         <h1>Our Services</h1>
-        <p>Discover our comprehensive suite of value-added services designed to empower your business</p>
+        <p>Discover our entertainment and information services designed for you</p>
       </div>
 
       <div className="services-filters">
@@ -86,6 +91,7 @@ const ServicesPage = () => {
             className={`filter-btn ${selectedCategory === category.id ? 'active' : ''}`}
             onClick={() => setSelectedCategory(category.id)}
           >
+            {category.icon && <span className="filter-icon">{category.icon}</span>}
             {category.name}
           </button>
         ))}
@@ -95,6 +101,7 @@ const ServicesPage = () => {
         {filteredServices.map(service => (
           <div key={service.id} className={`service-card ${service.popular ? 'popular' : ''}`}>
             {service.popular && <div className="popular-badge">Most Popular</div>}
+            <div className="service-icon">{service.icon}</div>
             <h3>{service.title}</h3>
             <p className="service-description">{service.description}</p>
 
@@ -126,7 +133,7 @@ const ServicesPage = () => {
 
       <div className="services-cta">
         <h2>Need a Custom Solution?</h2>
-        <p>We can tailor our services to meet your specific business requirements</p>
+        <p>We can tailor our services to meet your specific entertainment needs</p>
         <button className="cta-btn">Contact Sales</button>
       </div>
     </div>
