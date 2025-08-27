@@ -1,0 +1,153 @@
+.account-page {
+  flex: 1;
+}
+
+.account-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #666;
+  cursor: pointer;
+  transition: var(--transition);
+  border-bottom: 3px solid transparent;
+}
+
+.tab-btn.active {
+  color: var(--secondary);
+  border-bottom: 3px solid var(--secondary);
+}
+
+.tab-btn:hover {
+  color: var(--secondary);
+}
+
+.tab-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.info-card {
+  background: white;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.info-card h2 {
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #f1f1f1;
+}
+
+.info-item {
+  margin-bottom: 1rem;
+}
+
+.info-item label {
+  display: block;
+  font-weight: 500;
+  color: #666;
+  margin-bottom: 0.3rem;
+}
+
+.info-item p {
+  font-size: 1.1rem;
+}
+
+.edit-btn, .upgrade-btn {
+  background: var(--gradient);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-top: 1rem;
+  transition: var(--transition);
+}
+
+.edit-btn:hover, .upgrade-btn:hover {
+  opacity: 0.9;
+}
+
+.plan-details {
+  margin-bottom: 1.5rem;
+}
+
+.plan-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.plan-validity, .plan-devices {
+  margin-bottom: 0.5rem;
+  color: #666;
+}
+
+.billing-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.billing-table th, .billing-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.billing-table th {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.download-btn {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.download-btn:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .account-tabs {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tab-btn {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    border-radius: 0;
+  }
+
+  .tab-btn.active {
+    border-bottom: 3px solid var(--secondary);
+  }
+
+  .billing-table {
+    font-size: 0.9rem;
+  }
+
+  .billing-table th, .billing-table td {
+    padding: 0.5rem;
+  }
+}
