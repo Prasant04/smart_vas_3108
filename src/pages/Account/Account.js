@@ -24,6 +24,7 @@ const Account = () => {
       <div className="page-content">
         <h1 className="page-title">Your Account</h1>
 
+        {/* Tabs */}
         <div className="account-tabs">
           <button
             className={`tab-btn ${activeTab === 'profile' ? 'active' : ''}`}
@@ -45,6 +46,7 @@ const Account = () => {
           </button>
         </div>
 
+        {/* Content */}
         <div className="tab-content">
           {activeTab === 'profile' && (
             <div className="profile-info">
@@ -62,7 +64,7 @@ const Account = () => {
                   <label>Phone</label>
                   <p>{userData.phone}</p>
                 </div>
-                <button className="edit-btn">Edit Profile</button>
+                <button className="btn">Edit Profile</button>
               </div>
             </div>
           )}
@@ -76,7 +78,7 @@ const Account = () => {
                   <div className="plan-validity">Valid for: {userData.validity}</div>
                   <div className="plan-devices">Connected devices: {userData.devices}</div>
                 </div>
-                <button className="upgrade-btn">Upgrade Plan</button>
+                <button className="btn upgrade">Upgrade Plan</button>
               </div>
             </div>
           )}
@@ -85,28 +87,30 @@ const Account = () => {
             <div className="billing-info">
               <div className="info-card">
                 <h2>Billing History</h2>
-                <table className="billing-table">
-                  <thead>
-                    <tr>
-                      <th>Date</th>
-                      <th>Amount</th>
-                      <th>Plan</th>
-                      <th>Invoice</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {billingHistory.map(item => (
-                      <tr key={item.id}>
-                        <td>{item.date}</td>
-                        <td>{item.amount}</td>
-                        <td>{item.plan}</td>
-                        <td>
-                          <button className="download-btn">Download</button>
-                        </td>
+                <div className="table-wrapper">
+                  <table className="billing-table">
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Plan</th>
+                        <th>Invoice</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {billingHistory.map(item => (
+                        <tr key={item.id}>
+                          <td>{item.date}</td>
+                          <td>{item.amount}</td>
+                          <td>{item.plan}</td>
+                          <td>
+                            <button className="btn small">Download</button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           )}

@@ -1,43 +1,121 @@
 import React, { useState, useEffect } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+
+import SplashScreen from './components/SplashScreen';
+import Login from './components/Login';
+import Register from './components/Register';
+import OTPVerification from './components/OTPVerification';
+
 import Header from './components/Header';
 import Footer from './components/Footer';
+
 import Home from './pages/Home';
 import Catalog from './pages/Catalog';
 import Account from './pages/Account';
 import Support from './pages/Support';
 import ServicesPage from './pages/ServicesPage';
+
+import Movies from './components/Services/Movies';
+import Games from './components/Services/Games';
+import News from './components/Services/News';
+
+
 import './App.css';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('home');
+  const [showSplash, setShowSplash] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.substring(1);
-      setCurrentPage(hash || 'home');
-    };
+    // ✅ check token properly
+    const token = localStorage.getItem('authToken');
+    setIsAuthenticated(!!token);
 
-    window.addEventListener('hashchange', handleHashChange);
-    handleHashChange();
+    const timer = setTimeout(() => {
+      setShowSplash(false);
+    }, 3000);
 
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    return () => clearTimeout(timer);
   }, []);
 
-  const renderPage = () => {
-    switch(currentPage) {
-      case 'catalog': return <Catalog />;
-      case 'account': return <Account />;
-      case 'support': return <Support />;
-      case 'services': return <ServicesPage />;
-      default: return <Home />;
-    }
-  };
+  if (showSplash) {
+    return <SplashScreen />;
+  }
 
   return (
     <div className="App">
-      <Header />
-      {renderPage()}
-      <Footer />
+      {isAuthenticated && <Header setIsAuthenticated={setIsAuthenticated} />}
+
+      <Routes>
+        {/* Auth Routes */}
+        <Route
+          path="/"
+          element={isAuthenticated ? <Home /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/login"
+          element={
+            !isAuthenticated ? (
+              <Login setIsAuthenticated={setIsAuthenticated} />
+            ) : (
+              <Navigate to="/" />
+            )
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            !isAuthenticated ? (
+              <Register />
+            ) : (
+              <Navigate to="/" />
+            )
+          }
+        />
+        <Route
+          path="/verify-otp"
+          element={
+            !isAuthenticated ? (
+              <OTPVerification setIsAuthenticated={setIsAuthenticated} />
+            ) : (
+              <Navigate to="/" />
+            )
+          }
+        />
+
+        {/* Protected Pages */}
+        <Route
+          path="/catalog"
+          element={isAuthenticated ? <Catalog /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/account"
+          element={isAuthenticated ? <Account /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/support"
+          element={isAuthenticated ? <Support /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/services"
+          element={isAuthenticated ? <ServicesPage /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/movies"
+          element={isAuthenticated ? <Movies /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/games"
+          element={isAuthenticated ? <Games /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/news"
+          element={isAuthenticated ? <News /> : <Navigate to="/login" />}
+        />
+
+      </Routes>
+
+      {isAuthenticated && <Footer />}
     </div>
   );
 }

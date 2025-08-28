@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from "react";
+import { Link } from "react-router-dom";
 import "./Services.css";
 
 const CATEGORIES = ["All", "Movies", "Weather", "Games", "News", "Sports"];
@@ -8,10 +9,9 @@ const SERVICES = [
     id: 1,
     title: "Movies",
     category: "Movies",
-    blurb:
-      "Stream thousands of movies from Bollywood, Hollywood and regional cinema.",
+    blurb: "Stream thousands of movies from Bollywood, Hollywood and regional cinema.",
     icon: "🎬",
-    popular: true,
+    path: "/movies",
   },
   {
     id: 2,
@@ -19,6 +19,7 @@ const SERVICES = [
     category: "Weather",
     blurb: "Accurate forecasts and real-time updates for your location.",
     icon: "🌤️",
+    path: "/weather", // (create later if you have Weather page)
   },
   {
     id: 3,
@@ -26,14 +27,15 @@ const SERVICES = [
     category: "Games",
     blurb: "Play hundreds of exciting games across genres and categories.",
     icon: "🎮",
+    path: "/games",
   },
   {
     id: 4,
     title: "News",
     category: "News",
-    blurb:
-      "Stay updated with the latest news from around the world in multiple languages.",
+    blurb: "Stay updated with the latest news from around the world in multiple languages.",
     icon: "📰",
+    path: "/news",
   },
   {
     id: 5,
@@ -41,6 +43,7 @@ const SERVICES = [
     category: "Sports",
     blurb: "Live sports action, scores and highlights from around the globe.",
     icon: "🏃‍♂️",
+    path: "/sports",
   },
 ];
 
@@ -49,7 +52,7 @@ export default function Services() {
 
   const list = useMemo(() => {
     if (active === "All") return SERVICES;
-    return SERVICES.filter(s => s.category === active);
+    return SERVICES.filter((s) => s.category === active);
   }, [active]);
 
   return (
@@ -59,9 +62,9 @@ export default function Services() {
         <p>Discover our entertainment and information services designed for you</p>
       </header>
 
-      {/* Filter bar - one line */}
+      {/* Filter bar */}
       <div className="services-filters" role="tablist" aria-label="Service filters">
-        {CATEGORIES.map(cat => (
+        {CATEGORIES.map((cat) => (
           <button
             key={cat}
             type="button"
@@ -75,15 +78,10 @@ export default function Services() {
         ))}
       </div>
 
-      {/* Grid – 3 per row on desktop */}
+      {/* Services grid */}
       <div className="services-grid">
-        {list.map(svc => (
-          <article
-            key={svc.id}
-            className={`service-card ${svc.category.toLowerCase()}`}
-          >
-            {svc.popular && <span className="popular-badge">Most Popular</span>}
-
+        {list.map((svc) => (
+          <article key={svc.id} className={`service-card ${svc.category.toLowerCase()}`}>
             <div className="service-icon" aria-hidden>
               <span>{svc.icon}</span>
             </div>
@@ -92,7 +90,7 @@ export default function Services() {
             <p className="service-description">{svc.blurb}</p>
 
             <div className="service-actions">
-              <button className="details-btn">View details</button>
+              <Link to={svc.path} className="details-btn">View details</Link>
               <button className="subscribe-btn">Subscribe</button>
             </div>
           </article>

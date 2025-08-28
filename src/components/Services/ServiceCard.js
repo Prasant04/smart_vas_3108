@@ -1,17 +1,20 @@
-import React from 'react';
-import './ServiceCard.css';
+// src/components/Services/ServiceCard.js
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "./ServiceCard.css";
 
-const ServiceCard = ({ service }) => {
+const ServiceCard = ({ title, description, path }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(path);
+  };
+
   return (
     <div className="service-card">
-      <div className="service-icon">
-        <i className={`fas fa-${service.icon}`}></i>
-      </div>
-      <div className="service-content">
-        <h3>{service.title}</h3>
-        <p>{service.description}</p>
-        <a href="#services">Explore →</a>
-      </div>
+      <h3>{title}</h3>
+      <p>{description}</p>
+      <button onClick={handleClick}>View Details</button>
     </div>
   );
 };

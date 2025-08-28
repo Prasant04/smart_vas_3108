@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./Header.css";
 import NotificationPanel from "../Notification/NotificationPanel";
 
-const Header = () => {
+const Header = ({ setIsAuthenticated }) => {
   const [notificationCount, setNotificationCount] = useState(3);
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const notificationRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleNotificationClick = () => {
     setIsNotificationOpen((prev) => !prev);
@@ -18,7 +20,10 @@ const Header = () => {
   const handleLogout = () => {
     const confirmLogout = window.confirm("Are you sure you want to logout?");
     if (confirmLogout) {
-      alert("Logout successful!");
+      localStorage.removeItem("authToken");
+      localStorage.removeItem("phoneNumber");
+      setIsAuthenticated(false);
+      navigate("/login");
     }
   };
 
@@ -50,29 +55,29 @@ const Header = () => {
         <div className="nav-container">
           <ul className="nav-links">
             <li>
-              <a href="#home" className="active">
+              <Link to="/">
                 <i className="fas fa-home"></i> Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#catalog">
+              <Link to="/catalog">
                 <i className="fas fa-book"></i> Catalog
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#services">
+              <Link to="/services">
                 <i className="fas fa-cogs"></i> Services
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#account">
+              <Link to="/account">
                 <i className="fas fa-user"></i> Account
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#support">
+              <Link to="/support">
                 <i className="fas fa-headset"></i> Support
-              </a>
+              </Link>
             </li>
           </ul>
 
