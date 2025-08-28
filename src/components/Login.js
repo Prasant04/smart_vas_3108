@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { loginUser, sendOtp } from '../services/api';
+import '../styles/Login.css';
+
 
 const Login = ({ setIsAuthenticated }) => {
   const [phoneNumber, setPhoneNumber] = useState('');

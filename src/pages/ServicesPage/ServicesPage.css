@@ -1,47 +1,98 @@
+/* ---------- SERVICES PAGE ---------- */
+.services-page {
+  padding: 4rem 2rem;
+  background: #071b23;
+  color: #fff;
+  text-align: center;
+}
+
+.services-page h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #00b4ff;
+}
+
+/* ---------- SERVICES GRID ---------- */
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 per row */
-  gap: 1.5rem; /* spacing between cards */
-  padding: 2rem;
+  gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
+/* ---------- SERVICE CARD ---------- */
 .service-card {
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
+  border-radius: 12px;
   padding: 2rem;
   text-align: center;
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
 }
 
 .service-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 25px rgba(0, 198, 255, 0.3);
+  transform: translateY(-8px);
+  border-color: #00b4ff;
+  box-shadow: 0 8px 25px rgba(0, 180, 255, 0.4);
 }
 
+/* ---------- ICON ---------- */
+.service-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+/* ---------- CARD HEADING ---------- */
 .service-card h3 {
-  margin-top: 1rem;
-  font-size: 1.3rem;
-  color: #fff;
+  margin: 0.8rem 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #00b4ff;
+  border-bottom: 2px solid #00b4ff;
+  padding-bottom: 0.5rem;
 }
 
+/* ---------- CARD DESCRIPTION ---------- */
 .service-card p {
   font-size: 0.95rem;
-  color: #aaa;
-  margin: 0.5rem 0 1rem;
+  line-height: 1.5;
+  color: #bbb;
+  margin: 1rem 0 1.5rem;
 }
 
-/* RESPONSIVE */
+/* ---------- BUTTON ---------- */
+.btn-details {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(90deg, #00b4ff, #0077ff);
+  color: #fff;
+  border: none;
+  transition: 0.3s ease;
+}
+
+.btn-details:hover {
+  background: linear-gradient(90deg, #009ed9, #005fc9);
+  transform: scale(1.05);
+}
+
+/* ---------- RESPONSIVE ---------- */
 @media (max-width: 992px) {
   .services-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 per row on tablets */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
+
 @media (max-width: 600px) {
   .services-grid {
-    grid-template-columns: 1fr; /* single column on mobile */
+    grid-template-columns: 1fr;
   }
 }

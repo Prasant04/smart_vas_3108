@@ -1,65 +1,111 @@
+/* ---------- FOOTER ---------- */
 .footer {
-  background: #0f2027; /* Dark mode background */
+  background: rgba(15, 32, 39, 0.95); /* Dark glassy */
   color: #e0e0e0;
-  padding: 2rem;
-  margin-top: 3rem;
-  font-size: 0.85rem; /* ✅ smaller base font size */
+  padding: 3rem 2rem;
+  margin-top: 4rem;
+  font-size: 0.9rem;
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.5);
 }
 
+/* ---------- FOOTER GRID ---------- */
 .footer-content {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2.5rem;
+  text-align: center; /* ✅ ensures neat alignment */
 }
 
+/* ---------- SECTION TITLES ---------- */
 .footer-section h3 {
-  margin-bottom: 0.8rem;
-  font-size: 1rem; /* ✅ reduced from 1.2rem */
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
   color: #ffffff;
+  border-bottom: 2px solid #1a73e8;
+  display: inline-block;
+  padding-bottom: 0.4rem;
 }
 
+/* ---------- ABOUT / BRAND TEXT ---------- */
+.footer-section p {
+  margin-top: 0.8rem;
+  line-height: 1.6;
+  font-size: 0.9rem;
+  color: #aaa;
+  max-width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---------- LINKS ---------- */
 .footer-section ul {
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .footer-section ul li {
-  margin-bottom: 0.4rem;
+  margin: 0.6rem 0;
 }
 
 .footer-section a {
   color: #a8dadc;
   text-decoration: none;
-  transition: var(--transition);
-  font-size: 0.85rem; /* ✅ smaller link size */
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
 }
 
 .footer-section a:hover {
-  color: #00a8ff;
+  color: #00e5ff;
+  text-shadow: 0 0 8px rgba(0, 229, 255, 0.7);
 }
 
+/* ---------- CONTACT SECTION ---------- */
+.footer-section .contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 0.6rem 0;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.footer-section .contact-item i {
+  color: #00e5ff;
+  font-size: 1rem;
+}
+
+/* ---------- FOOTER BOTTOM ---------- */
 .footer-bottom {
   text-align: center;
-  padding-top: 1.5rem;
-  margin-top: 1.5rem;
+  padding-top: 2rem;
+  margin-top: 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: 0.75rem; /* ✅ reduced footer note text */
+  font-size: 0.8rem;
   color: #aaa;
+  letter-spacing: 0.5px;
 }
 
+/* ---------- RESPONSIVE ---------- */
 @media (max-width: 768px) {
   .footer {
-    padding: 1.2rem;
-    font-size: 0.8rem; /* ✅ smaller base on mobile */
+    padding: 2rem 1.2rem;
+    font-size: 0.85rem;
   }
 
   .footer-content {
     grid-template-columns: 1fr;
-    gap: 1.2rem;
+    gap: 2rem;
+    text-align: center;
   }
 
-  .footer-section h3 {
-    font-size: 0.95rem; /* ✅ slightly smaller on mobile */
+  .footer-section p {
+    max-width: 100%;
   }
 }

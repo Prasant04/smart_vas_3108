@@ -5,71 +5,49 @@ const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = [
-    {
-      title: "SmartVAS Premium Services",
-      description: "Access all our services with a single subscription plan starting at just ₹299/month",
-      buttonText: "Get Started",
-      className: ""
-    },
-    {
-      title: "Advanced Analytics",
-      description: "Gain deep insights into your business with our powerful analytics tools and dashboards",
-      buttonText: "Learn More",
-      className: "slide-2"
-    },
-    {
-      title: "24/7 Priority Support",
-      description: "Get dedicated support from our experts anytime you need assistance",
-      buttonText: "Contact Us",
-      className: "slide-3"
-    }
+    { img: "/assets/banner1.jpg", alt: "SmartVAS Premium Services" },
+    { img: "/assets/banner2.jpg", alt: "Advanced Analytics" },
+    { img: "/assets/banner3.jpg", alt: "24/7 Priority Support" }
   ];
 
-  // Fixed the ESLint warning by using useCallback
+  // Always move forward
   const nextSlide = useCallback(() => {
     setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
   }, [slides.length]);
-
-  const prevSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide - 1 + slides.length) % slides.length);
-  };
 
   const goToSlide = (index) => {
     setCurrentSlide(index);
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 5000);
-
+    const interval = setInterval(nextSlide, 4000);
     return () => clearInterval(interval);
-  }, [nextSlide]); // Added nextSlide to dependency array
+  }, [nextSlide]);
 
   return (
     <div className="premium-services">
-      <div className="carousel" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
+      <div
+        className="carousel"
+        style={{ transform: `translateX(${currentSlide * 100}%)` }} // ✅ flipped direction
+      >
         {slides.map((slide, index) => (
-          <div key={index} className={`carousel-slide ${slide.className}`}>
-            <h2 className="carousel-title">{slide.title}</h2>
-            <p className="carousel-description">{slide.description}</p>
-            <button className="carousel-cta">{slide.buttonText}</button>
+          <div key={index} className="carousel-slide">
+            <img src={slide.img} alt={slide.alt} className="carousel-image" />
           </div>
         ))}
       </div>
 
-      <button className="carousel-btn prev" onClick={prevSlide}>
-        <i className="fas fa-chevron-left"></i>
-      </button>
+      {/* Only Next Button (forward/right) */}
       <button className="carousel-btn next" onClick={nextSlide}>
         <i className="fas fa-chevron-right"></i>
       </button>
 
+      {/* Dots Navigation */}
       <div className="carousel-nav">
         {slides.map((_, index) => (
           <div
             key={index}
-            className={`carousel-dot ${index === currentSlide ? 'active' : ''}`}
+            className={`carousel-dot ${index === currentSlide ? "active" : ""}`}
             onClick={() => goToSlide(index)}
           ></div>
         ))}

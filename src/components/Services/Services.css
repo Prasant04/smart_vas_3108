@@ -1,71 +1,191 @@
 /* ---------- GLOBAL ---------- */
-:root{
-  --primary:#e4e6eb;
-  --secondary:#1a73e8;
-  --accent:#00c6ff;
-  --card:#15232c;
-  --dark:#0f2027;
-  --gradient:linear-gradient(135deg,var(--secondary),var(--accent));
-  --shadow:0 10px 30px rgba(0,0,0,.35);
-  --radius:14px;
-  --transition:all .25s ease;
+:root {
+  --primary: #e4e6eb;
+  --secondary: #1a73e8;
+  --accent: #00c6ff;
+  --card: #15232c;
+  --dark: #0f2027;
+  --gradient: linear-gradient(135deg, var(--secondary), var(--accent));
+  --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+  --radius: 14px;
+  --transition: all .25s ease;
 }
 
-body{
-  margin:0;
-  background:var(--dark);
-  color:var(--primary);
-  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
-  line-height:1.5;
-  font-size: 0.9rem; /* 🔹 globally smaller */
+body {
+  margin: 0;
+  background: var(--dark);
+  color: var(--primary);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.5;
+  font-size: 0.9rem;
 }
 
-/* ---------- PAGE ---------- */
-.services-header h1{
-  margin:0 0 .75rem;
-  font-size:2rem;  /* 🔹 was 2.4rem */
-  color:#fff;
+/* ---------- SECTION WRAPPER ---------- */
+.services-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  text-align: center;
 }
-.services-header p{
-  color:#b8c1c7;
-  max-width:720px;
-  margin:0 auto;
-  font-size:0.9rem;  /* 🔹 smaller */
+
+/* ---------- SECTION HEADER ---------- */
+.services-header {
+  margin-bottom: 1.5rem; /* ⬅️ slightly reduced to bring filter bar closer */
+}
+
+.services-header h1 {
+  margin: 0 0 0.75rem;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.services-header p {
+  color: #b8c1c7;
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 0.95rem;
+  text-align: center;
+  line-height: 1.6;
 }
 
 /* ---------- FILTER BAR ---------- */
-.filter-btn{
-  font-size:0.85rem; /* 🔹 was bigger */
-  padding:.6rem 1rem;
-  font-weight:600;
+.filter-bar {
+  display: flex;
+  justify-content: center;  /* ✅ center horizontally */
+  align-items: center;      /* ✅ vertical alignment */
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin: 1rem 0 2rem;      /* ✅ closer to header */
 }
 
-/* ---------- CARD ---------- */
-.service-icon{
-  font-size:30px; /* 🔹 was 38px */
-  height:90px;    /* 🔹 shorter icon box */
+.filter-btn {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.65rem 1.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--primary);
+  cursor: pointer;
+  transition: var(--transition);
 }
 
-.service-card h3{
-  margin:.25rem 0 0;
-  font-size:1.1rem; /* 🔹 was 1.35rem */
-  color:#fff;
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--gradient);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: var(--shadow);
 }
 
-.service-description{
-  color:#b6c0c6;
-  font-size:0.85rem; /* 🔹 smaller */
-  line-height:1.4;
+/* ---------- SERVICE GRID ---------- */
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+/* ---------- SERVICE CARD ---------- */
+.service-card {
+  background: var(--card);
+  padding: 1.8rem 1.2rem;
+  border-radius: var(--radius);
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 340px;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow);
+}
+
+/* ---------- ICON ---------- */
+.service-icon {
+  font-size: 30px;
+  height: 90px;
+  width: 90px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--accent);
+}
+
+/* ---------- TEXT ---------- */
+.service-card h3 {
+  margin: 0.25rem 0 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.service-description {
+  margin: 0.75rem 0 1.25rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #b6c0c6;
+  flex-grow: 1;
 }
 
 /* ---------- BADGE ---------- */
-.popular-badge{
-  font-size:0.7rem; /* 🔹 smaller */
+.popular-badge {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.75rem;
+  border-radius: 8px;
+  background: var(--gradient);
+  color: #fff;
 }
 
 /* ---------- ACTIONS ---------- */
+.card-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: auto;
+}
+
 .details-btn,
-.subscribe-btn{
-  font-size:0.85rem; /* 🔹 smaller button text */
-  padding:.65rem .9rem;
+.subscribe-btn {
+  font-size: 0.85rem;
+  padding: 0.65rem 1rem;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+/* Outlined button */
+.details-btn {
+  background: transparent;
+  border: 1px solid var(--secondary);
+  color: var(--secondary);
+}
+
+.details-btn:hover {
+  background: var(--secondary);
+  color: #fff;
+}
+
+/* Gradient button */
+.subscribe-btn {
+  background: var(--gradient);
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+
+.subscribe-btn:hover {
+  opacity: 0.9;
 }

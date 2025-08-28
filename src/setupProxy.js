@@ -4,7 +4,7 @@ module.exports = function(app) {
   app.use(
     '/api',
     createProxyMiddleware({
-      target: 'https://595c72976973.ngrok-free.app/',
+      target: 'https://f4faf440152c.ngrok-free.app/',
       changeOrigin: true,
       secure: false,
       pathRewrite: {
@@ -12,7 +12,7 @@ module.exports = function(app) {
       },
       onProxyReq: (proxyReq, req, res) => {
         proxyReq.setHeader('ngrok-skip-browser-warning', 'true');
-        proxyReq.setHeader('Origin', 'https://595c72976973.ngrok-free.app/');
+        proxyReq.setHeader('Origin', 'https://f4faf440152c.ngrok-free.app/');
       },
       onProxyRes: (proxyRes, req, res) => {
         // Add CORS headers to response

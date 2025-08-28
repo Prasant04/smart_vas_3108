@@ -1,3 +1,4 @@
+/* ---------- NOTIFICATION PANEL ---------- */
 .notification-panel {
   position: relative;
   display: inline-block;
@@ -6,61 +7,78 @@
 .notification-icon {
   position: relative;
   cursor: pointer;
-  color: white;
+  color: #fff;
+  font-size: 20px;
 }
 
 .notification-badge {
   position: absolute;
   top: -6px;
   right: -6px;
-  background: red;
-  color: white;
+  background: #ff3b3b;
+  color: #fff;
   font-size: 12px;
   font-weight: bold;
   border-radius: 50%;
   padding: 2px 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
 }
 
+/* ---------- DROPDOWN ---------- */
 .notification-dropdown {
   position: absolute;
   right: 0;
   margin-top: 10px;
-  width: 250px;
+  width: 260px;
   background: #1e2a32;
-  color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  color: #fff;
+  border-radius: 14px;   /* Rounded corners */
+  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
   z-index: 100;
+  overflow: hidden;
 }
 
 .notification-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 12px;
   font-weight: bold;
+  background: #15232c;
   border-bottom: 1px solid #333;
+  border-top-left-radius: 14px;  /* match rounded corners */
+  border-top-right-radius: 14px;
 }
 
 .notification-header button {
   background: none;
   border: none;
-  color: #00c8c8;
+  color: #00c6ff;
   font-size: 12px;
   cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.notification-header button:hover {
+  color: #1a73e8;
 }
 
 .notification-list {
   list-style: none;
   margin: 0;
   padding: 0;
-  max-height: 200px;
+  max-height: 220px;
   overflow-y: auto;
 }
 
 .notification-list li {
-  padding: 10px;
+  padding: 12px;
   border-bottom: 1px solid #333;
+  transition: background 0.3s ease;
+}
+
+.notification-list li:hover {
+  background: rgba(255,255,255,0.05);
 }
 
 .notification-list li.unread {
@@ -74,6 +92,42 @@
 
 .notification-list li.empty {
   text-align: center;
-  color: #aaa;
+  color: #888;
   padding: 20px;
+}
+
+/* ---------- NAVIGATION LINKS (Home, Catalog, Services, Account, Support) ---------- */
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  padding: 12px;
+  background: #15232c;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  border-radius: 10px;
+}
+
+.navbar a {
+  color: #bbb;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.navbar a:hover {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+}
+
+.navbar a.active {
+  background: #00c6ff;
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0,198,255,0.4);
 }

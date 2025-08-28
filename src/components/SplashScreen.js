@@ -5,7 +5,7 @@ const SplashScreen = () => {
   return (
     <div className="splash-screen">
       <div className="splash-container">
-        <div className="logo">VAS</div>
+        <div className="logo">Smart-VAS</div>
         <h1>Value Added Services</h1>
         <div className="spinner"></div>
       </div>
