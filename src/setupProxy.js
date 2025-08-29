@@ -2,14 +2,14 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
 
 module.exports = function (app) {
   app.use(
-    "/api",
+    "/news",
     createProxyMiddleware({
-      target: "https://4374c9ecdbbf.ngrok-free.app",
+      target: "https://fe1fb71b44b3.ngrok-free.app/news",
       changeOrigin: true,
       secure: false,
-      pathRewrite: { "^/api": "" },
+      pathRewrite: { "^/news": "/news" }, // ✅ keep the /news path
       onProxyReq: (proxyReq) => {
-        proxyReq.setHeader("ngrok-skip-browser-warning", "true");
+        proxyReq.setHeader("https://fe1fb71b44b3.ngrok-free.app/news", "true"); // ✅ fix header name
       },
       onProxyRes: (proxyRes) => {
         proxyRes.headers["Access-Control-Allow-Origin"] = "http://localhost:3000";
