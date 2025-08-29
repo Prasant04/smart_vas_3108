@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { registerUser, sendOtp } from '../services/api';
+import "../styles/Register.css";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -23,12 +24,21 @@ const Register = () => {
   };
 
   const validateForm = () => {
-    if (!formData.user_name || !formData.user_email || !formData.user_phone_number || !formData.user_password || !formData.confirmPassword) {
+    if (
+      !formData.user_name ||
+      !formData.user_email ||
+      !formData.user_phone_number ||
+      !formData.user_password ||
+      !formData.confirmPassword
+    ) {
       setError('All fields are required');
       return false;
     }
 
-    if (formData.user_phone_number.length !== 10 || !/^\d+$/.test(formData.user_phone_number)) {
+    if (
+      formData.user_phone_number.length !== 10 ||
+      !/^\d+$/.test(formData.user_phone_number)
+    ) {
       setError('Please enter a valid 10-digit phone number');
       return false;
     }
@@ -75,7 +85,9 @@ const Register = () => {
       if (otpResponse.data.status === 'success') {
         setSuccess('Registration successful! Redirecting to OTP verification...');
         setTimeout(() => {
-          navigate('/verify-otp', { state: { phoneNumber: formData.user_phone_number } });
+          navigate('/verify-otp', {
+            state: { phoneNumber: formData.user_phone_number }
+          });
         }, 2000);
       } else {
         setError('Registration successful but failed to send OTP. Please try logging in.');
@@ -103,7 +115,7 @@ const Register = () => {
           <h2 className="form-title">Create Account</h2>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="user_name">Full Name</label>
+              <label htmlFor="user_name"></label>
               <input
                 type="text"
                 id="user_name"
@@ -113,10 +125,9 @@ const Register = () => {
                 onChange={handleChange}
                 placeholder="Enter your full name"
               />
-              <div className="form-icon">👤</div>
             </div>
             <div className="form-group">
-              <label htmlFor="user_email">Email Address</label>
+              <label htmlFor="user_email"></label>
               <input
                 type="email"
                 id="user_email"
@@ -126,10 +137,9 @@ const Register = () => {
                 onChange={handleChange}
                 placeholder="Enter your email address"
               />
-              <div className="form-icon">✉️</div>
             </div>
             <div className="form-group">
-              <label htmlFor="user_phone_number">Mobile Number</label>
+              <label htmlFor="user_phone_number"></label>
               <input
                 type="text"
                 id="user_phone_number"
@@ -140,11 +150,10 @@ const Register = () => {
                 placeholder="Enter your 10-digit mobile number"
                 maxLength="10"
               />
-              <div className="form-icon">📱</div>
-              <p className="password-hint">We'll send a verification code to this number</p>
+
             </div>
             <div className="form-group">
-              <label htmlFor="user_password">Password</label>
+              <label htmlFor="user_password"></label>
               <input
                 type="password"
                 id="user_password"
@@ -154,11 +163,10 @@ const Register = () => {
                 onChange={handleChange}
                 placeholder="Enter your password"
               />
-              <div className="form-icon">🔒</div>
-              <p className="password-hint">Password must be at least 6 characters long</p>
+
             </div>
             <div className="form-group">
-              <label htmlFor="confirmPassword">Confirm Password</label>
+              <label htmlFor="confirmPassword"></label>
               <input
                 type="password"
                 id="confirmPassword"
@@ -168,10 +176,11 @@ const Register = () => {
                 onChange={handleChange}
                 placeholder="Confirm your password"
               />
-              <div className="form-icon">🔒</div>
             </div>
+
             {error && <div className="error">{error}</div>}
             {success && <div className="success">{success}</div>}
+
             <button type="submit" className="btn" disabled={loading}>
               {loading ? (
                 <>
@@ -183,6 +192,7 @@ const Register = () => {
               )}
             </button>
           </form>
+
           <div className="link">
             Already have an account? <Link to="/login">Sign In</Link>
           </div>

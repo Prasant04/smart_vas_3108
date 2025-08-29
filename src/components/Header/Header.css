@@ -1,13 +1,10 @@
 /* ---------- HEADER ---------- */
 .header {
-  background: rgba(15, 32, 39, 0.92);
+  background: #20343f;
   color: white;
   padding: 0.8rem 1.5rem;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
-  border-radius: 12px;
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  margin-bottom: 0.8rem;  /* ⬅️ smaller to align closer with filter bar */
+   /* ⬅️ smaller to align closer with filter bar */
 }
 
 .navbar {
@@ -17,7 +14,7 @@
 }
 
 /* ---------- LOGO ---------- */
-.logo {
+.logo1 {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -25,13 +22,14 @@
   font-weight: 700;
   color: #4ecdc4;
   letter-spacing: 0.5px;
+
 }
 
-.logo i {
+.logo1 i {
   font-size: 1.9rem;
 }
 
-.logo-reg {
+.logo1-reg {
   font-size: 0.85rem;
   vertical-align: super;
   margin-left: 2px;
@@ -144,7 +142,7 @@
 }
 
 .logout-btn i {
-  color: #ff6347;
+  color: #ffffff;
 }
 
 /* ---------- RESPONSIVE ---------- */

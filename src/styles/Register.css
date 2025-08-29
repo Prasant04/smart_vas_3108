@@ -1,10 +1,10 @@
-/* ====== THEME (one background color everywhere) ====== */
+/* ====== THEME (consistent with Login.css) ====== */
 :root{
-  --bg: #1c2833;      /* unified background */
-  --card: #22303f;    /* card surface (slightly lighter for contrast) */
-  --accent: #3b82f6;  /* blue accent */
-  --text: #e5e7eb;    /* primary text */
-  --muted: #94a3b8;   /* secondary text */
+  --bg: #1c2833;
+  --card: #22303f;
+  --accent: #3b82f6;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
 }
 
 html, body, #root {
@@ -20,19 +20,19 @@ html, body, #root {
   background: var(--bg);
 }
 
-/* ====== L O G I N  P A G E ====== */
-.login-page {
+/* ====== REGISTER PAGE ====== */
+.container {
   min-height: 100vh;
-  background: var(--bg);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 24px;
+
 }
 
-/* Card */
-.login-card {
-  width: 360px;
+/* Card (same as login-card, single dialog box) */
+.card {
+  width: 420px;
   background: var(--card);
   color: var(--text);
   border-radius: 18px;
@@ -44,48 +44,48 @@ html, body, #root {
   animation: fadeIn 0.9s ease-in-out;
   transition: box-shadow .25s ease, transform .25s ease;
 }
-.login-card:hover{
+.card:hover {
   transform: translateY(-2px);
   box-shadow:
     0 0 36px rgba(59,130,246,0.35),
     0 16px 48px rgba(0,0,0,0.65);
 }
 
+
 /* Header */
-.login-brand{
+.card-header h1 {
   font-size: 2rem;
   font-weight: 700;
   color: var(--accent);
   margin: 0 0 .4rem 0;
 }
-.login-subtitle {
+.card-header p {
   margin: 0 0 1.6rem 0;
   color: var(--muted);
   font-size: .95rem;
-  text-align: center;   /* force center alignment */
-  display: block;       /* ensure it's treated as block for centering */
+  text-align: center;
+  display: block;
 }
 
-
 /* Section title */
-.login-form-title{
+.form-title {
   font-size: 1.2rem;
   margin: 0 0 1.1rem 0;
   font-weight: 600;
 }
 
 /* Form */
-.login-form-group{
+.form-group {
   text-align: left;
   margin-bottom: 1rem;
 }
-.login-label{
+label {
   display: block;
   font-size: .9rem;
   color: #cbd5e1;
   margin-bottom: .35rem;
 }
-.login-input{
+.form-input {
   width: 100%;
   padding: .8rem 1rem;
   border: none;
@@ -96,20 +96,34 @@ html, body, #root {
   outline: none;
   transition: box-shadow .25s ease, background .25s ease;
 }
-.login-input::placeholder{ color: #9aa7b6; }
-.login-input:focus{
+.form-input::placeholder { color: #9aa7b6; }
+.form-input:focus {
   background: #34495e;
-  box-shadow: 0 0 0 2px rgba(59,130,246,.35), 0 0 12px rgba(59,130,246,.35);
+  box-shadow: 0 0 0 2px rgba(59,130,246,.35),
+              0 0 12px rgba(59,130,246,.35);
 }
 
-.login-error{
+/* Hints */
+.password-hint {
+  font-size: .8rem;
+  color: var(--muted);
+  margin-top: .3rem;
+}
+
+/* Errors & success */
+.error {
   color: #ef4444;
+  font-size: .85rem;
+  margin-top: .5rem;
+}
+.success {
+  color: #22c55e;
   font-size: .85rem;
   margin-top: .5rem;
 }
 
 /* Button */
-.login-btn{
+.btn {
   width: 100%;
   margin-top: 1rem;
   padding: .95rem 1rem;
@@ -126,41 +140,30 @@ html, body, #root {
   justify-content: center;
   gap: .5rem;
 }
-.login-btn:hover{
+.btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 22px rgba(0,114,255,.35);
 }
-.login-btn.is-loading{
-  opacity: .9;
-  pointer-events: none;
-}
-.btn-spinner{
-  width: 16px;
-  height: 16px;
-  border: 2px solid rgba(255,255,255,.25);
-  border-top: 2px solid #fff;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+.btn:disabled {
+  opacity: .8;
+  cursor: not-allowed;
 }
 
 /* Footer link */
-.login-link{
+.link {
   margin-top: 1.2rem;
   font-size: .9rem;
   color: var(--muted);
 }
-.login-link a{
+.link a {
   color: var(--accent);
   font-weight: 600;
   text-decoration: none;
 }
-.login-link a:hover{ text-decoration: underline; }
+.link a:hover { text-decoration: underline; }
 
 /* Animations */
-@keyframes fadeIn{
-  from{ opacity: 0; transform: translateY(-8px); }
-  to{ opacity: 1; transform: translateY(0); }
-}
-@keyframes spin{
-  to{ transform: rotate(360deg); }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }

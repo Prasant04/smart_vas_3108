@@ -45,7 +45,7 @@ const Header = ({ setIsAuthenticated }) => {
   return (
     <header className="header">
       <nav className="navbar">
-        <div className="logo">
+        <div className="logo1">
           <i className="fas fa-brain"></i>
           <span>
             SmartVAS<span className="logo-reg">°</span>
@@ -82,14 +82,15 @@ const Header = ({ setIsAuthenticated }) => {
           </ul>
 
           <div className="nav-icons" ref={notificationRef}>
-            <button className="icon-btn" onClick={handleNotificationClick}>
-              <i className="fas fa-bell"></i>
-              {notificationCount > 0 && (
-                <span className="notification-badge">{notificationCount}</span>
-              )}
-            </button>
+           <button className="icon-btn" onClick={handleNotificationClick}>
+             <i className="fas fa-bell"></i>   {/* Bell icon only here */}
+             {notificationCount > 0 && (
+               <span className="notification-badge">{notificationCount}</span>
+             )}
+           </button>
 
-            {isNotificationOpen && <NotificationPanel />}
+           {isNotificationOpen && <NotificationPanel />}
+
 
             <button className="icon-btn logout-btn" onClick={handleLogout}>
               <i className="fas fa-sign-out-alt"></i>

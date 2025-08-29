@@ -2,7 +2,7 @@
 .home-page {
   flex: 1;
   padding: 2rem;
-  background: linear-gradient(135deg, #0b1418 0%, #152229 40%, #20343f 100%);
+  background: #20343f;
   min-height: calc(100vh - 80px);
   color: #e4e6eb;
   font-family: "Segoe UI", Roboto, sans-serif;
@@ -11,7 +11,7 @@
 
 /* ---------- CONTENT SECTION ---------- */
 .content-section {
-  max-width: 1200px;
+  max-width: 1500px;
   margin: 3rem auto 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));

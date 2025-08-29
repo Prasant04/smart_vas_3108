@@ -1,7 +1,6 @@
 /* ---------- SERVICES PAGE ---------- */
 .services-page {
   padding: 4rem 2rem;
-  background: #071b23;
   color: #fff;
   text-align: center;
 }
@@ -18,7 +17,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 per row */
   gap: 2rem;
-  max-width: 1200px;
+  max-width: 1500px;
   margin: 0 auto;
 }
 

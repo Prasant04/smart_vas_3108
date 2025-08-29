@@ -1,4 +1,5 @@
 import axios from 'axios';
+import "../styles/verifyOtp.css";
 
 // Create axios instance with base URL pointing to our proxy
 const api = axios.create({

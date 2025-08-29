@@ -91,7 +91,7 @@ export default function Services() {
 
             <div className="service-actions">
               <Link to={svc.path} className="details-btn">View details</Link>
-              <button className="subscribe-btn">Subscribe</button>
+
             </div>
           </article>
         ))}

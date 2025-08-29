@@ -17,7 +17,7 @@ import ServicesPage from './pages/ServicesPage';
 
 import Movies from './components/Services/Movies';
 import Games from './components/Services/Games';
-import News from './components/Services/News';
+import News from './components/Services/NewsFeed';
 
 
 import './App.css';
