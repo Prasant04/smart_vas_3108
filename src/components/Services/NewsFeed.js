@@ -1,17 +1,22 @@
 import React, { useState } from "react";
 import "./NewsFeed.css";
 
-export default function NewsFetcher() {
-  const [storyId, setStoryId] = useState(""); // user will paste or select a storyId
+export default function NewsFeed() {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  // 🔒 Hardcoded storyId
+  const storyId =
+    "CAAqNggKIjBDQklTSGpvSmMzUnZjbmt0TXpZd1NoRUtEd2pzbFA3X0N4RjlDUlpVVnhudXBpZ0FQAQ";
 
   const fetchNews = async () => {
     setLoading(true);
+    setError("");
     setArticles([]);
 
     try {
-      const res = await fetch("https://fe1fb71b44b3.ngrok-free.app/news", {
+      const res = await fetch("https://22cef037e5d7.ngrok-free.app/news", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -28,7 +33,7 @@ export default function NewsFetcher() {
       setArticles(Array.isArray(data) ? data : []);
     } catch (err) {
       console.error("❌ Error fetching news:", err);
-      setArticles([]);
+      setError("Failed to fetch news. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -36,60 +41,55 @@ export default function NewsFetcher() {
 
   return (
     <div style={{ padding: "20px", fontFamily: "Arial" }}>
-      <h2>News Search</h2>
-      <input
-        type="text"
-        placeholder="Enter storyId..."
-        value={storyId}
-        onChange={(e) => setStoryId(e.target.value)}
-        style={{ padding: "8px", width: "400px" }}
-      />
+      <h2>📰 Latest News</h2>
+
       <button
         onClick={fetchNews}
         style={{
-          marginLeft: "10px",
-          padding: "8px 16px",
+          padding: "10px 15px",
+          fontSize: "16px",
+          marginBottom: "20px",
+          cursor: "pointer",
           backgroundColor: "#4caf50",
           color: "white",
           border: "none",
-          cursor: "pointer",
+          borderRadius: "5px",
         }}
       >
-        {loading ? "Loading..." : "Fetch News"}
+        {loading ? "Loading..." : "Load News"}
       </button>
 
-      <div style={{ marginTop: "20px" }}>
-        {articles.length === 0 && !loading && <p>No news yet</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
 
+      <div>
         {articles.map((article) => (
           <div
             key={article.article_id}
             style={{
-              border: "1px solid #ccc",
+              border: "1px solid #ddd",
               borderRadius: "8px",
               padding: "15px",
-              marginBottom: "15px",
+              marginBottom: "20px",
               display: "flex",
               gap: "15px",
+              alignItems: "flex-start",
               background: "#fafafa",
             }}
           >
             {/* Thumbnail */}
-            {article.thumbnail_url && (
-              <img
-                src={article.thumbnail_url}
-                alt={article.title}
-                style={{
-                  width: "100px",
-                  height: "100px",
-                  objectFit: "cover",
-                  borderRadius: "6px",
-                }}
-              />
-            )}
+            <img
+              src={article.thumbnail_url || article.photo_url}
+              alt={article.title}
+              style={{
+                width: "100px",
+                height: "100px",
+                objectFit: "cover",
+                borderRadius: "6px",
+              }}
+            />
 
             {/* Text */}
-            <div>
+            <div style={{ flex: 1 }}>
               <h3 style={{ margin: "0 0 5px" }}>
                 <a
                   href={article.link}
@@ -100,11 +100,21 @@ export default function NewsFetcher() {
                   {article.title}
                 </a>
               </h3>
-              <p style={{ margin: "0 0 8px" }}>{article.snippet}</p>
-              <small>
-                📰 {article.source_name} •{" "}
-                {new Date(article.published_datetime_utc).toLocaleDateString()}
-              </small>
+              <p style={{ margin: "5px 0" }}>{article.snippet}</p>
+              <p style={{ fontSize: "14px", color: "gray" }}>
+                {new Date(article.published_datetime_utc).toLocaleString()} —{" "}
+                <img
+                  src={article.source_logo_url}
+                  alt={article.source_name}
+                  style={{
+                    width: "16px",
+                    height: "16px",
+                    verticalAlign: "middle",
+                    marginRight: "5px",
+                  }}
+                />
+                {article.source_name}
+              </p>
             </div>
           </div>
         ))}

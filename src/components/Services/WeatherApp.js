@@ -17,54 +17,86 @@ export default function WeatherApp() {
     setWeather(null);
 
     try {
-      const response = await fetch(`/weather?city=${encodeURIComponent(city)}`);
+      const res = await fetch(
+        `https://22cef037e5d7.ngrok-free.app/weather?city=${encodeURIComponent(city)}`,
+        {
+          method: "GET",
+          headers: {
+            "ngrok-skip-browser-warning": "true",
+            "Content-Type": "application/json"
+          }
+        }
+      );
 
-      if (!response.ok) {
-        throw new Error(`Server responded with status ${response.status}`);
+      if (!res.ok) {
+        throw new Error("Failed to fetch weather");
       }
 
-      const data = await response.json();
+      const data = await res.json();
       setWeather(data);
     } catch (err) {
       setError("Failed to fetch weather. Please try again.");
+      console.error("Weather fetch error:", err);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="weather-container" style={{ textAlign: "center", marginTop: "50px" }}>
-      <h2>Weather App</h2>
+    <div style={{ padding: "20px", fontFamily: "Arial", maxWidth: "400px", margin: "auto" }}>
+      <h1>🌤 Weather App</h1>
 
-      <input
-        type="text"
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
-        placeholder="Enter city name"
-        style={{ padding: "8px", width: "200px", marginRight: "10px" }}
-      />
-      <button onClick={fetchWeather} style={{ padding: "8px 16px" }}>
-        Get Weather
-      </button>
+      <div style={{ marginBottom: "10px" }}>
+        <input
+          type="text"
+          placeholder="Enter city name"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+          style={{
+            padding: "8px",
+            fontSize: "16px",
+            width: "70%",
+            marginRight: "5px"
+          }}
+        />
+        <button
+          onClick={fetchWeather}
+          style={{
+            padding: "8px 12px",
+            fontSize: "16px",
+            cursor: "pointer"
+          }}
+        >
+          Search
+        </button>
+      </div>
 
       {loading && <p>Loading...</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
 
-      {weather?.location && weather?.current && (
-        <div className="weather-info" style={{ marginTop: "20px" }}>
-          <h3>{weather.location.name}, {weather.location.country}</h3>
-          <p>Temperature: {weather.current.temp_c}°C</p>
-          <p>Condition: {weather.current.condition.text}</p>
+      {weather && weather.location && weather.current && (
+        <div
+          style={{
+            border: "1px solid #ccc",
+            borderRadius: "8px",
+            padding: "15px",
+            marginTop: "10px",
+            textAlign: "center"
+          }}
+        >
+          <h2>
+            {weather.location.name}, {weather.location.region}
+          </h2>
+          <p>{weather.location.country}</p>
+          <h3>{weather.current.temp_c}°C / {weather.current.temp_f}°F</h3>
+          <p>{weather.current.condition.text}</p>
           <img
-            src={`https:${weather.current.condition.icon}`}
-            alt={weather.current.condition.text}
-            style={{ marginTop: "10px" }}
+            src={weather.current.condition.icon.startsWith("http")
+              ? weather.current.condition.icon
+              : `https:${weather.current.condition.icon}`}
+            alt="weather icon"
           />
         </div>
-      )}
-
-      {!loading && !weather && !error && (
-        <p style={{ marginTop: "20px" }}>No data found</p>
       )}
     </div>
   );

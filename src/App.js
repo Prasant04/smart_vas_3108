@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import SplashScreen from './components/SplashScreen';
+import Login from "./components/Login";
+import OTPVerification from "./components/OTPVerification";
+
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -21,7 +24,7 @@ import Sports from "./components/Services/Sports";  // ✅ Now used
 import './App.css';
 
 function App() {
-  const [showSplash, setShowSplash] = useState(true);
+  const [showSplash, setShowSplash] = useState(false );
 
   // 🔹 Force authentication ON
   const [isAuthenticated, setIsAuthenticated] = useState(true);
@@ -38,29 +41,42 @@ function App() {
     return <SplashScreen />;
   }
 
+  if (showSplash) {
+    return <SplashScreen />;
+  }
+
   return (
     <div className="App">
       {isAuthenticated && <Header setIsAuthenticated={setIsAuthenticated} />}
 
       <Routes>
-        {/* Always show dashboard */}
-        <Route path="/" element={<Home />} />
-
-        {/* Dashboard / Services */}
-        <Route path="/catalog" element={<Catalog />} />
-        <Route path="/account" element={<Account />} />
-        <Route path="/support" element={<Support />} />
-        <Route path="/services" element={<ServicesPage />} />
-        <Route path="/movies" element={<Movies />} />
-        <Route path="/games" element={<Games />} />
-        <Route path="/news" element={<News />} />
-        <Route path="/weather" element={<WeatherApp />} />
-        <Route path="/sports" element={<Sports />} /> {/* ✅ Added */}
+        {!isAuthenticated ? (
+          <>
+            <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+            <Route path="/verify-otp" element={<OTPVerification setIsAuthenticated={setIsAuthenticated} />} />
+            <Route path="/*" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+          </>
+        ) : (
+          <>
+            <Route path="/" element={<Home />} />
+            <Route path="/catalog" element={<Catalog />} />
+            <Route path="/account" element={<Account />} />
+            <Route path="/support" element={<Support />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/movies" element={<Movies />} />
+            <Route path="/games" element={<Games />} />
+            <Route path="/news" element={<News />} />
+            <Route path="/weather" element={<WeatherApp />} />
+            <Route path="/sports" element={<Sports />} />
+          </>
+        )}
       </Routes>
+
 
       {isAuthenticated && <Footer />}
     </div>
   );
+
 }
 
 export default App;
