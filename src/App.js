@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import SplashScreen from './components/SplashScreen';
 import Login from "./components/Login";
+import Register from "./components/Register.js";
 import OTPVerification from "./components/OTPVerification";
 
 
@@ -55,6 +56,7 @@ function App() {
             <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
             <Route path="/verify-otp" element={<OTPVerification setIsAuthenticated={setIsAuthenticated} />} />
             <Route path="/*" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+            <Route path="/register" element={<Register setIsAuthenticated={setIsAuthenticated} />} />
           </>
         ) : (
           <>
