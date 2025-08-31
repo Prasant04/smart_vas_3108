@@ -4,16 +4,16 @@ import "./Sports.css";
 function Sports() {
   const [matches, setMatches] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [subscribed, setSubscribed] = useState(false);
 
   useEffect(() => {
-    fetch("https://22cef037e5d7.ngrok-free.app/cricket", {
+    fetch("https://2fb448ee806f.ngrok-free.app/cricket", {
       headers: {
         "ngrok-skip-browser-warning": "true",
       },
     })
       .then((res) => res.json())
       .then((data) => {
-        // Flatten all matches from typeMatches → seriesMatches → matches
         const allMatches =
           data?.typeMatches?.flatMap((tm) =>
             tm.seriesMatches?.flatMap((sm) =>
@@ -25,6 +25,17 @@ function Sports() {
       .catch((err) => console.error("Error fetching cricket data:", err))
       .finally(() => setLoading(false));
   }, []);
+
+  // Subscribe/Unsubscribe handlers
+  const handleSubscribe = () => {
+    setSubscribed(true);
+    alert("✅ Subscribed to Live Cricket for ₹199 / month");
+  };
+
+  const handleUnsubscribe = () => {
+    setSubscribed(false);
+    alert("❌ Unsubscribed from Live Cricket");
+  };
 
   if (loading) return <p style={{ textAlign: "center" }}>Loading cricket data...</p>;
   if (matches.length === 0) return <p style={{ textAlign: "center" }}>No matches available.</p>;
@@ -76,6 +87,27 @@ function Sports() {
                   </p>
                 </div>
               )}
+
+              {/* Price */}
+              <p className="price">₹199 / month</p>
+
+              {/* Action buttons */}
+              <div className="action-buttons">
+                <button
+                  className="subscribe-btn"
+                  onClick={handleSubscribe}
+                  disabled={subscribed}
+                >
+                  Subscribe
+                </button>
+                <button
+                  className="unsubscribe-btn"
+                  onClick={handleUnsubscribe}
+                  disabled={!subscribed}
+                >
+                  Unsubscribe
+                </button>
+              </div>
             </div>
           </div>
         );

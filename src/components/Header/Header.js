@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom"; // ⬅️ Use NavLink
 import "./Header.css";
 import NotificationPanel from "../Notification/NotificationPanel";
 
@@ -11,10 +11,7 @@ const Header = ({ setIsAuthenticated }) => {
 
   const handleNotificationClick = () => {
     setIsNotificationOpen((prev) => !prev);
-    // Reset count when opening
-    if (!isNotificationOpen) {
-      setNotificationCount(0);
-    }
+    if (!isNotificationOpen) setNotificationCount(0);
   };
 
   const handleLogout = () => {
@@ -45,6 +42,7 @@ const Header = ({ setIsAuthenticated }) => {
   return (
     <header className="header">
       <nav className="navbar">
+        {/* Logo */}
         <div className="logo1">
           <i className="fas fa-brain"></i>
           <span>
@@ -52,45 +50,46 @@ const Header = ({ setIsAuthenticated }) => {
           </span>
         </div>
 
+        {/* Nav Links */}
         <div className="nav-container">
           <ul className="nav-links">
             <li>
-              <Link to="/">
+              <NavLink to="/" end>
                 <i className="fas fa-home"></i> Home
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="/catalog">
+              <NavLink to="/catalog">
                 <i className="fas fa-book"></i> Catalog
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="/services">
+              <NavLink to="/services">
                 <i className="fas fa-cogs"></i> Services
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="/account">
+              <NavLink to="/account">
                 <i className="fas fa-user"></i> Account
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="/support">
+              <NavLink to="/support">
                 <i className="fas fa-headset"></i> Support
-              </Link>
+              </NavLink>
             </li>
           </ul>
 
+          {/* Icons */}
           <div className="nav-icons" ref={notificationRef}>
-           <button className="icon-btn" onClick={handleNotificationClick}>
-             <i className="fas fa-bell"></i>   {/* Bell icon only here */}
-             {notificationCount > 0 && (
-               <span className="notification-badge">{notificationCount}</span>
-             )}
-           </button>
+            <button className="icon-btn" onClick={handleNotificationClick}>
+              <i className="fas fa-bell"></i>
+              {notificationCount > 0 && (
+                <span className="notification-badge">{notificationCount}</span>
+              )}
+            </button>
 
-           {isNotificationOpen && <NotificationPanel />}
-
+            {isNotificationOpen && <NotificationPanel />}
 
             <button className="icon-btn logout-btn" onClick={handleLogout}>
               <i className="fas fa-sign-out-alt"></i>

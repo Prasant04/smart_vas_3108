@@ -59,21 +59,23 @@ export default function Movies() {
   return (
     <div className="main-content">
       <div className="movies-page">
-        {/* Page Title */}
-        <h1 className="page-title">🎬 Movies</h1>
 
-        {/* Search bar */}
-        <div className="search-container">
-          <input
-            type="text"
-            placeholder="Enter movie name..."
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          <button onClick={getMovie}>Search</button>
+        {/* ✅ Wrapped in container */}
+        <div className="movies-container">
+          <h1 className="page-title">🎬 Movies</h1>
+
+          <div className="search-container">
+            <input
+              type="text"
+              placeholder="Enter movie name..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+            />
+            <button onClick={getMovie}>Search</button>
+          </div>
+
+          {error && <h3 className="msg">{error}</h3>}
         </div>
-
-        {error && <h3 className="msg">{error}</h3>}
 
         {/* Modal for movie details */}
         {showModal && movie && (
@@ -102,16 +104,16 @@ export default function Movies() {
                     <button className="subscribe-btn" onClick={handleSubscribe}>
                       Subscribe
                     </button>
-                    <button className="unsubscribe-btn">
-                      Unsubscribe
-                    </button>
+                    <button className="unsubscribe-btn">Unsubscribe</button>
                   </div>
 
                   {/* Payment Box */}
                   {showPaymentBox && (
                     <div className="payment-box">
                       <h3>Confirm Subscription</h3>
-                      <p>You will be charged <strong>₹499 / month</strong></p>
+                      <p>
+                        You will be charged <strong>₹499 / month</strong>
+                      </p>
                       <button className="pay-btn" onClick={handlePay}>
                         Pay ₹499
                       </button>

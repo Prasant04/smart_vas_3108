@@ -15,19 +15,14 @@ body {
 .news-container h2 {
   color: #ffffff;
   margin-bottom: 20px;
-}
-
-.news-input {
-  padding: 10px;
-  width: 400px;
-  border-radius: 6px;
-  border: 1px solid #333;
-  background: #1e1e1e;
-  color: #e0e0e0;
+  text-align: center;
+  font-size: 1.8rem;
+  text-shadow: 0 0 8px rgba(0, 200, 255, 0.6);
 }
 
 .news-button {
-  margin-left: 10px;
+  display: block;
+  margin: 0 auto 20px auto;
   padding: 10px 16px;
   background-color: #007bff;
   border: none;
@@ -35,27 +30,28 @@ body {
   cursor: pointer;
   color: #fff;
   font-weight: bold;
-  transition: background 0.2s;
+  transition: background 0.2s, box-shadow 0.2s;
 }
 
 .news-button:hover {
   background-color: #0056b3;
+  box-shadow: 0 0 12px rgba(0, 123, 255, 0.6);
 }
 
 .article-card {
   border: 1px solid #2a2a2a;
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 15px;
   margin-bottom: 15px;
   display: flex;
   gap: 15px;
-  background: #1c1c1c;
+  background: #15232c;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .article-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.6);
+  transform: translateY(-3px);
+  box-shadow: 0px 4px 15px rgba(0, 200, 255, 0.4);
 }
 
 .article-card img {
@@ -84,4 +80,47 @@ body {
 .article-meta {
   font-size: 12px;
   color: #888888;
+}
+
+.price {
+  margin-top: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #00ffcc;
+}
+
+.news-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 12px;
+}
+
+.subscribe-btn,
+.unsubscribe-btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.subscribe-btn {
+  background: #007bff;
+  color: white;
+}
+
+.subscribe-btn:hover {
+  background: #0056b3;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.6);
+}
+
+.unsubscribe-btn {
+  background: #e63946;
+  color: white;
+}
+
+.unsubscribe-btn:hover {
+  background: #c1121f;
+  box-shadow: 0 0 10px rgba(230, 57, 70, 0.6);
 }

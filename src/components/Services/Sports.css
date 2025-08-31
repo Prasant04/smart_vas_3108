@@ -1,73 +1,50 @@
+/* Dark container */
 .cricket-container {
   padding: 20px;
   font-family: "Segoe UI", Arial, sans-serif;
-  background: #f4f6f8;
+  background: #1c2833;
   min-height: 100vh;
+  color: #fff;
 }
 
 .cricket-container h1 {
   text-align: center;
-  color: #2c3e50;
+  color: #00aaff;
   margin-bottom: 30px;
   font-size: 2rem;
 }
 
-.match-type {
-  margin-bottom: 30px;
-}
-
-.match-type h2 {
-  border-bottom: 2px solid #2c3e50;
-  padding-bottom: 5px;
-  margin-bottom: 15px;
-  color: #34495e;
-}
-
+/* Series card */
 .series-card {
   margin: 20px 0;
-  padding: 15px;
-  background: #ffffff;
+  padding: 20px;
+  background: #1c2833;
   border-radius: 12px;
-  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.08);
 }
 
+/* Series title */
 .series-card h3 {
   margin-bottom: 15px;
-  color: #2980b9;
-  font-size: 1.2rem;
+  color: #00c3ff;
+  font-size: 1.3rem;
 }
 
+/* Match card */
 .match-card {
   margin: 12px 0;
   padding: 15px;
-  border: 1px solid #e0e0e0;
   border-radius: 10px;
-  background: #fafafa;
+  background: #0f2027;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+
 }
 
 .match-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 0 15px #00aaff, 0 0 30px rgba(0, 170, 255, 0.6);
 }
 
 .match-card h4 {
   margin-bottom: 10px;
-  color: #2c3e50;
-}
-
-.match-card p {
-  margin: 4px 0;
-  font-size: 0.95rem;
-  color: #555;
-}
-
-.match-card b {
-  color: #2c3e50;
-}
-
-.score {
-  margin-top: 8px;
-  font-weight: bold;
-  color: #27ae60;
+  color: #fff;
 }

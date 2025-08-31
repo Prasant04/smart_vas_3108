@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import "./WeatherApp.css";
 
 export default function WeatherApp() {
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [showPaymentBox, setShowPaymentBox] = useState(false);
 
   const fetchWeather = async () => {
     if (!city.trim()) {
@@ -18,7 +20,7 @@ export default function WeatherApp() {
 
     try {
       const res = await fetch(
-        `https://22cef037e5d7.ngrok-free.app/weather?city=${encodeURIComponent(city)}`,
+        `https://2fb448ee806f.ngrok-free.app/weather?city=${encodeURIComponent(city)}`,
         {
           method: "GET",
           headers: {
@@ -28,9 +30,7 @@ export default function WeatherApp() {
         }
       );
 
-      if (!res.ok) {
-        throw new Error("Failed to fetch weather");
-      }
+      if (!res.ok) throw new Error("Failed to fetch weather");
 
       const data = await res.json();
       setWeather(data);
@@ -42,60 +42,85 @@ export default function WeatherApp() {
     }
   };
 
+  // Handle subscribe
+  const handleSubscribe = () => {
+    setShowPaymentBox(true);
+  };
+
+  // Confirm payment
+  const handlePay = () => {
+    alert("✅ Payment Successful! You are now subscribed to Weather updates.");
+    setShowPaymentBox(false);
+  };
+
+  // Cancel subscription/payment
+  const handleCancel = () => {
+    setShowPaymentBox(false);
+  };
+
   return (
-    <div style={{ padding: "20px", fontFamily: "Arial", maxWidth: "400px", margin: "auto" }}>
+    <div className="weather-container">
       <h1>🌤 Weather App</h1>
 
-      <div style={{ marginBottom: "10px" }}>
+      <div>
         <input
           type="text"
           placeholder="Enter city name"
           value={city}
           onChange={(e) => setCity(e.target.value)}
-          style={{
-            padding: "8px",
-            fontSize: "16px",
-            width: "70%",
-            marginRight: "5px"
-          }}
+          className="weather-input"
         />
-        <button
-          onClick={fetchWeather}
-          style={{
-            padding: "8px 12px",
-            fontSize: "16px",
-            cursor: "pointer"
-          }}
-        >
+        <button onClick={fetchWeather} className="weather-button">
           Search
         </button>
       </div>
 
-      {loading && <p>Loading...</p>}
+      {loading && <p className="weather-loading">Loading...</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       {weather && weather.location && weather.current && (
-        <div
-          style={{
-            border: "1px solid #ccc",
-            borderRadius: "8px",
-            padding: "15px",
-            marginTop: "10px",
-            textAlign: "center"
-          }}
-        >
+        <div className="weather-result">
           <h2>
             {weather.location.name}, {weather.location.region}
           </h2>
           <p>{weather.location.country}</p>
-          <h3>{weather.current.temp_c}°C / {weather.current.temp_f}°F</h3>
+          <h3>
+            {weather.current.temp_c}°C / {weather.current.temp_f}°F
+          </h3>
           <p>{weather.current.condition.text}</p>
           <img
-            src={weather.current.condition.icon.startsWith("http")
-              ? weather.current.condition.icon
-              : `https:${weather.current.condition.icon}`}
+            src={
+              weather.current.condition.icon.startsWith("http")
+                ? weather.current.condition.icon
+                : `https:${weather.current.condition.icon}`
+            }
             alt="weather icon"
           />
+
+          {/* Subscribe/Unsubscribe Buttons */}
+          <div className="action-buttons">
+            <button className="subscribe-btn" onClick={handleSubscribe}>
+              Subscribe
+            </button>
+            <button className="unsubscribe-btn">Unsubscribe</button>
+          </div>
+
+          {/* Payment Box */}
+          {showPaymentBox && (
+            <div className="payment-box">
+              <h3>Confirm Subscription</h3>
+              <p>
+                You will be charged <strong>₹299 / month</strong> for Weather
+                updates.
+              </p>
+              <button className="pay-btn" onClick={handlePay}>
+                Pay ₹299
+              </button>
+              <button className="cancel-btn" onClick={handleCancel}>
+                Cancel
+              </button>
+            </div>
+          )}
         </div>
       )}
     </div>
