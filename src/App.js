@@ -2,11 +2,13 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import Subscription from "./Subscription";
+import Subscription from "./SubscriptionOtp"; // main subscription page
 import SplashScreen from "./components/SplashScreen";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import OTPVerification from "./components/OTPVerification";
+import OTPVerification from "./components/OTPVerification"; // login/register OTP
+import SubscriptionOtpVerify from "./SubscriptionOtpVerify"; // ✅ NEW for subscription OTP
+import SuccessPage from "./SuccessPage";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -78,12 +80,11 @@ function App() {
             <Route path="/sports" element={<Sports />} />
             <Route path="/subscription" element={<Subscription />} />
 
-            {/* OTP verification for subscription/unsubscription */}
-            <Route
-              path="/verify-otp"
-              element={<OTPVerification setIsAuthenticated={setIsAuthenticated} />}
-            />
+            {/* ✅ New route for Subscription OTP */}
+            <Route path="/subscription-otp" element={<SubscriptionOtpVerify />} />
 
+            {/* Success page after subscription/unsubscription */}
+            <Route path="/success" element={<SuccessPage />} />
           </>
         )}
       </Routes>

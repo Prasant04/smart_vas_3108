@@ -17,7 +17,7 @@ export default function NewsFeed() {
     setArticles([]);
 
     try {
-      const res = await fetch("https://099c4597a5ed.ngrok-free.app/news", {
+      const res = await fetch("https://e4b3a59d363b.ngrok-free.app/news", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

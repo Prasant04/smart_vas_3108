@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Movies.css";
-import Subscription from "../../Subscription"; // 👈 import Subscription
+import Subscription from "../../SubscriptionOtp"; // ✅ keep only this
 
 const API_KEY = "4df12694";
 

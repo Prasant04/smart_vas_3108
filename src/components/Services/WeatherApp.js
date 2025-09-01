@@ -20,7 +20,7 @@ export default function WeatherApp() {
 
     try {
       const res = await fetch(
-        `https://099c4597a5ed.ngrok-free.app/weather?city=${encodeURIComponent(city)}`,
+        `https://e4b3a59d363b.ngrok-free.app/weather?city=${encodeURIComponent(city)}`,
         {
           method: "GET",
           headers: {
