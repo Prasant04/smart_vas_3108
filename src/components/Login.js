@@ -25,7 +25,9 @@ const Login = ({ setIsAuthenticated }) => {
       if (userResponse.data && userResponse.data.length > 0) {
         const otpResponse = await sendOtp(phoneNumber);
         if (otpResponse.data.status === "success") {
-          navigate("/verify-otp", { state: { phoneNumber } });
+          localStorage.setItem("user_phone_number", phoneNumber);
+          navigate("/verify-otp", { state: { mode: "login", phoneNumber } });
+
         } else {
           setError("Failed to send OTP. Please try again.");
         }

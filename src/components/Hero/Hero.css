@@ -24,7 +24,7 @@
   transform: scale(0.9);
   transition: all 0.8s ease-in-out;
   padding: 0;              /* ✅ removed padding that caused black strip */
-  background: #000;        /* fallback background */
+  /*background: #000;        /* fallback background */
 }
 
 .carousel-slide.active {
@@ -35,7 +35,7 @@
 /* Slide Image */
 .carousel-image {
   width: 100%;
-  height: 500px;           /* adjust as per your design */
+  height: 600px;           /* adjust as per your design */
   display: block;
   object-fit: cover;       /* ensures full coverage */
   border-radius: 16px;
@@ -50,7 +50,7 @@
   text-align: center;
   color: white;
   padding: 1rem 2rem;
-  background: rgba(0, 0, 0, 0.45); /* semi-transparent overlay */
+ /* background: rgba(0, 0, 0, 0.45); /* semi-transparent overlay */
   border-radius: 12px;
   max-width: 80%;
 }
@@ -59,7 +59,7 @@
   font-size: 2.2rem;
   font-weight: 800;
   margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  background: white;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

@@ -39,8 +39,8 @@ const Home = () => {
               <Link to="/sports">Sports</Link>
             </div>
             <div className="feature-item">
-              <i className="fas fa-music"></i>
-              <Link to="/music">Music</Link>
+              <i className="fas fa-cloud-sun"></i> {/* Weather-like icon */}
+              <Link to="/weather">Weather</Link>
             </div>
             <div className="feature-item">
               <i className="fas fa-newspaper"></i>

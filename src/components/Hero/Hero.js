@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './Hero.css';
 
+
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = [
-    { img: "src/assets/entertainment.jpg", alt: "Entertainment", title: "Entertainment", desc: "Movies, music & more at your fingertips" },
-    { img: "/assets/sports.jpg", alt: "Sports", title: "Sports", desc: "Stay updated with live scores & highlights" },
+    { img: "/assets/entertainment.jpg", alt: "Entertainment", title: "Entertainment", desc: "Movies, music & more at your fingertips" },
+    { img: "/assets/sports.png", alt: "Sports", title: "Sports", desc: "Stay updated with live scores & highlights" },
     { img: "/assets/weather.jpg", alt: "Weather", title: "Weather", desc: "Get the latest forecasts & alerts" },
-    { img: "/assets/games.jpg", alt: "Games", title: "Games", desc: "Play and explore trending mobile games" },
-    { img: "/assets/news.jpg", alt: "News", title: "News", desc: "Breaking headlines & top stories" }
+    { img: "/assets/games.png", alt: "Games", title: "Games", desc: "Play and explore trending mobile games" },
+    { img: "/assets/news.png", alt: "News", title: "News", desc: "Breaking headlines & top stories" }
   ];
 
 
