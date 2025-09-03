@@ -5,18 +5,18 @@ const Account = () => {
   const [activeTab, setActiveTab] = useState('profile');
 
   const userData = {
-    name: 'Peter',
-    email: 'peter@example.com',
-    phone: '+91 9876543210',
+    name: 'Muskan',
+    email: 'Muskan@gmail.com',
+    phone: '+91 8847755435',
     plan: 'Premium',
     validity: '30 Days',
     devices: 3
   };
 
   const billingHistory = [
-    { id: 1, date: '2023-05-15', amount: '₹299', plan: 'Premium' },
-    { id: 2, date: '2023-04-15', amount: '₹299', plan: 'Premium' },
-    { id: 3, date: '2023-03-15', amount: '₹299', plan: 'Premium' }
+    { id: 1, date: '2025-09-02', amount: '₹299', plan: 'Entertainment' },
+    { id: 2, date: '2025-09-02', amount: '₹499', plan: 'Sports' },
+    { id: 3, date: '2025-09-02', amount: '₹299', plan: 'Games' }
   ];
 
   return (

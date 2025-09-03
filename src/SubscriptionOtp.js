@@ -1,4 +1,4 @@
-// src/Subscription.js
+// src/SubscriptionOtp.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -7,56 +7,48 @@ const Subscription = ({ userId, serviceName, phoneNumber }) => {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
-  // ================= SUBSCRIBE FLOW =================
+  // ================= SUBSCRIBE =================
   const handleSubscribe = async () => {
     try {
       const res = await axios.post(
-        `https://e4b3a59d363b.ngrok-free.app/api/subscribe?userId=${userId}&serviceName=${serviceName}&phoneNumber=${phoneNumber}`
+        "http://localhost:8080/api/subscribe",
+        { userId, serviceName, phoneNumber },
+        { headers: { "Content-Type": "application/json" } }
       );
 
       if (res.data.status === "otp_sent") {
         setMessage(res.data.message);
-        // ✅ Redirect to OTP verification
-        navigate("/verify-otp", {
-          state: {
-            mode: "subscribe",
-            userId,
-            serviceName,
-            phoneNumber,
-          },
+        navigate("/subscription-otp", {
+          state: { mode: "subscribe", userId, serviceName, phoneNumber },
         });
       } else {
         setMessage(res.data.message || "Failed to send OTP.");
       }
     } catch (err) {
-      console.error(err);
+      console.error("❌ Subscribe error:", err);
       setMessage("Error sending OTP for subscribe.");
     }
   };
 
-  // ================= UNSUBSCRIBE FLOW =================
+  // ================= UNSUBSCRIBE =================
   const handleUnsubscribe = async () => {
     try {
       const res = await axios.post(
-        `https://e4b3a59d363b.ngrok-free.app/api/unsubscribe?userId=${userId}&serviceName=${serviceName}&phoneNumber=${phoneNumber}`
+        "http://localhost:8080/api/unsubscribe",
+        { userId, serviceName, phoneNumber },
+        { headers: { "Content-Type": "application/json" } }
       );
 
       if (res.data.status === "otp_sent") {
         setMessage(res.data.message);
-        // ✅ Redirect to OTP verification
-        navigate("/verify-otp", {
-          state: {
-            mode: "unsubscribe",
-            userId,
-            serviceName,
-            phoneNumber,
-          },
+        navigate("/subscription-otp", {
+          state: { mode: "unsubscribe", userId, serviceName, phoneNumber },
         });
       } else {
         setMessage(res.data.message || "Failed to send OTP.");
       }
     } catch (err) {
-      console.error(err);
+      console.error("❌ Unsubscribe error:", err);
       setMessage("Error sending OTP for unsubscribe.");
     }
   };

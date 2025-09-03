@@ -6,7 +6,7 @@ function Sports() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://e4b3a59d363b.ngrok-free.app/cricket", {
+    fetch("https://35ff8a702506.ngrok-free.app/cricket", {
       headers: {
         "ngrok-skip-browser-warning": "true",
       },

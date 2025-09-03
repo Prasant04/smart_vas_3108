@@ -2,21 +2,18 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./styles/verifyOtp.css";
-
+import "./styles/verifyOtp.css"; // ✅ Styling
 
 const SubscriptionOtpVerify = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Data passed from Movies.js
   const { mode, userId, serviceName, phoneNumber } = location.state || {};
 
   const [otp, setOtp] = useState(["", "", "", ""]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Handle OTP input
   const handleChange = (value, index) => {
     if (/^\d?$/.test(value)) {
       const newOtp = [...otp];
@@ -29,7 +26,6 @@ const SubscriptionOtpVerify = () => {
     }
   };
 
-  // Handle OTP submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -43,10 +39,10 @@ const SubscriptionOtpVerify = () => {
     setLoading(true);
     try {
       const endpoint =
-        mode === "subscribe" ? "verify-subscribe-otp" : "verify-unsubscribe-otp";
+        mode === "subscribe" ? "verify-subscribe" : "verify-unsubscribe";
 
       const res = await axios.post(
-        `https://e4b3a59d363b.ngrok-free.app/api/${endpoint}?userId=${userId}&serviceName=${serviceName}&phoneNumber=${phoneNumber}&otp=${enteredOtp}`
+        `http://localhost:8080/api/${endpoint}?userId=${userId}&serviceName=${serviceName}&otp=${enteredOtp}`
       );
 
       if (res.data.status === "success") {
@@ -62,7 +58,7 @@ const SubscriptionOtpVerify = () => {
         setError(res.data.message || "Invalid OTP. Please try again.");
       }
     } catch (err) {
-      console.error("OTP verification failed:", err);
+      console.error("❌ OTP verification failed:", err);
       setError("An error occurred. Please try again.");
     } finally {
       setLoading(false);
@@ -73,9 +69,9 @@ const SubscriptionOtpVerify = () => {
     <div className="verify-page">
       <div className="verify-card">
         <h1>SmartVAS</h1>
-        <p className="verify-subtitle">Your Gateway to Value-Added Services</p>
+        <p className="verify-subtitle">Subscription OTP Verification</p>
 
-        <h2>Verify Subscription</h2>
+        <h2>Verify {mode === "subscribe" ? "Subscription" : "Unsubscription"}</h2>
         <p className="verify-instruction">
           Enter the 4-digit OTP sent to your phone <br />
           ending with {phoneNumber?.slice(-4)}
